@@ -1,20 +1,18 @@
-package com.example.mapping.domain.embedded;
+package com.example.mapping.domain.embeddedCollection;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class Address {
+    @Column
     private String city;
     private String street;
-    private String state;
-//    @Embedded
-//    private Zipcode zipcode;
+    private String zipcode;
 }

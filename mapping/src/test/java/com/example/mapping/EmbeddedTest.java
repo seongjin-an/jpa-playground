@@ -25,7 +25,8 @@ public class EmbeddedTest {
     @DisplayName("embedded")
     @Commit
     void embeddedTest() {
-        Address address = new Address("city", "street", "state", new Zipcode("zip", "code"));
+//        Address address = new Address("city", "street", "state", new Zipcode("zip", "code"));
+        Address address = new Address("city", "street", "state");
 
         Member member1 = new Member();
         member1.setUsername("member1");
@@ -45,7 +46,8 @@ public class EmbeddedTest {
     @DisplayName("embedded test")
     @Commit
     void embedded() {
-        Address address = new Address("city", "street", "state", new Zipcode("zip", "code"));
+//        Address address = new Address("city", "street", "state", new Zipcode("zip", "code"));
+        Address address = new Address("city", "street", "state");
         LocalDateTime startDate = LocalDateTime.parse("202010260900", DateTimeFormatter.ofPattern("yyyyMMddHHmm"));
         Period period = new Period(startDate, LocalDateTime.now());
         Member member1 = new Member();
@@ -57,8 +59,23 @@ public class EmbeddedTest {
         provider1.setName("provider1");
         em.persist(provider1);
 
-        member1.setPhoneNumber(new PhoneNumber("area1", "local1", provider1));
+//        member1.setPhoneNumber(new PhoneNumber("area1", "local1", provider1));
         em.persist(member1);
     }
 
+    @DisplayName("값 타입 공유 참조 시 어떻게 되는가")
+    @Test
+    @Commit
+    public void immutableTest() throws Exception{
+        Member member = new Member();
+        Address addr = new Address("oldCity", "street", "state");
+        member.setHomeAddress(addr);
+        em.persist(member);
+
+        addr.setCity("newCity");
+        Member member2 = new Member();
+        member2.setHomeAddress(addr);
+        em.persist(member2);
+
+    }
 }

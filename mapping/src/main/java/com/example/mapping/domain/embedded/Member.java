@@ -25,14 +25,14 @@ public class Member {
     @Embedded
     private Address homeAddress;
 
-    @Embedded
-    private PhoneNumber phoneNumber;
+//    @Embedded
+//    private PhoneNumber phoneNumber;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "city", column = @Column(name = "WORK_CITY")),
             @AttributeOverride(name = "street", column = @Column(name = "WORK_STREET")),
-            @AttributeOverride(name = "zipcode", column = @Column(name = "WORK_ZIPCODE"))
+            @AttributeOverride(name = "state", column = @Column(name = "WORK_STATE")),
     })
     private Address workAddress;
 }
