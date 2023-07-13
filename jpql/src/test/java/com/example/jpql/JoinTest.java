@@ -107,6 +107,30 @@ public class JoinTest {
         teamB.setName("teamB");
         em.persist(teamB);
 
+        Team teamC = new Team();
+        teamC.setName("teamC");
+        em.persist(teamC);
+
+        Team teamD = new Team();
+        teamD.setName("teamD");
+        em.persist(teamD);
+
+        Team teamE = new Team();
+        teamE.setName("teamE");
+        em.persist(teamE);
+
+        Team teamF = new Team();
+        teamF.setName("teamF");
+        em.persist(teamF);
+
+        Team teamG = new Team();
+        teamG.setName("teamG");
+        em.persist(teamG);
+
+        Team teamH = new Team();
+        teamH.setName("teamH");
+        em.persist(teamH);
+
         Member member1 = new Member();
         member1.setUsername("member1");
         member1.setTeam(teamA);
@@ -122,6 +146,36 @@ public class JoinTest {
         member3.setTeam(teamB);
         em.persist(member3);
 
+        Member member4 = new Member();
+        member4.setUsername("member4");
+        member4.setTeam(teamC);
+        em.persist(member4);
+
+        Member member5 = new Member();
+        member5.setUsername("member5");
+        member5.setTeam(teamD);
+        em.persist(member5);
+
+        Member member6 = new Member();
+        member6.setUsername("member6");
+        member6.setTeam(teamE);
+        em.persist(member6);
+
+        Member member7 = new Member();
+        member7.setUsername("member7");
+        member7.setTeam(teamF);
+        em.persist(member7);
+
+        Member member8 = new Member();
+        member8.setUsername("member8");
+        member8.setTeam(teamG);
+        em.persist(member8);
+
+        Member member9 = new Member();
+        member9.setUsername("member9");
+        member9.setTeam(teamH);
+        em.persist(member9);
+
         em.flush();
         em.clear();
 
@@ -136,7 +190,8 @@ public class JoinTest {
         // case 2 @BatchSize 어노테이션 추가, 또는 글로벌 세팅으로 하자
         String query = "select t from Team t";
         List<Team> result = em.createQuery(query, Team.class)
-                .setFirstResult(0).setMaxResults(2).getResultList();
+                .setFirstResult(2).setMaxResults(2).getResultList();
+        log.info("result size: {}", result.size());
         for (Team team : result) {
             log.info("team : {}", team);
         }
